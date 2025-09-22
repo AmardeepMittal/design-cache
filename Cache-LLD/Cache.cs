@@ -16,6 +16,15 @@ public class Cache<TKey, TValue> where TKey : notnull
 
     private readonly ReaderWriterLockingManager<TKey> _keyLockingManager;
 
+    /// <summary>
+    /// Uses <see cref="Cache_LLD.Storage.IStorage{TKey, TValue}"/> to abstract how/where data is stored,
+    /// allowing the cache to depend only on required operations and swap implementations without changes.
+    /// </summary>
+    /// <param name="storage">Backing <see cref="Cache_LLD.Storage.IStorage{TKey, TValue}"/>.</param>
+    /// <param name="evictionPolicy">Eviction policy used when capacity is reached.</param>
+    /// <param name="log">Logger.</param>
+    /// <param name="capacity">Maximum number of items to keep.</param>
+    /// <seealso cref="Cache_LLD.Storage.IStorage{TKey, TValue}"/>
     public Cache(IStorage<TKey, TValue> storage, IEvictionPolicy<TKey> evictionPolicy, ILog log, int capacity)
     {
         _storage = storage;

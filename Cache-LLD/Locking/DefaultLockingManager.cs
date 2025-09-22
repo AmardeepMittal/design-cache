@@ -19,7 +19,7 @@ namespace Cache_LLD.Locking
         private DefaultLockingManager() { }
 
         // Returns the lock object for a given key
-        public object GetSyncObject(TKey key)
+        private object GetSyncObject(TKey key)
         {
             return _locks.GetOrAdd(key, _ => new object());
         }

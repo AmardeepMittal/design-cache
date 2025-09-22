@@ -99,6 +99,8 @@ public bool TryAcquireLock(TKey key, int millisecondsTimeout)
 
 
 ## Storage
+Uses [IStorage](./Storage/IStorage.cs) to abstract how/where data is stored,
+allowing the cache to depend only on required operations and swap implementations without changes.
 Implemented as a `ConcurrentDictionary` with generic types for key-value pairs.
 
 - Must be a `ConcurrentDictionary` to prevent inconsistencies when multiple threads operate on it.
